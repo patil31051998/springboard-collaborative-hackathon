@@ -12,6 +12,8 @@ import { PrimaryDetails } from "../personalDetails";
 import { UploadDocuments } from "../uploadDocuments";
 import { TaskListForBeneficiary } from "../taskListForBeneficiary";
 import { ServiceList } from "../serviceList";
+import { useGlobalContext } from "../../services/context/globalContext";
+import { UserType } from "../../types/login";
 
 const initialDocumentList = ["SSN", "Birth Certificate", "Drivers license"];
 const mockServices = ["Bank account", "Eye checkup", "Therapist"];
@@ -55,8 +57,12 @@ export default function BeneficiaryDetails() {
   const [basicInformation, setBasicInformation] = useState<any>();
   const [services, setServices] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const { userDetails } = useGlobalContext();
+
+  const [isUserNavigator, setIsUsrNavigator] = React.useState(false);
 
   useEffect(() => {
+    setIsUsrNavigator(userDetails?.userType === UserType.NAVIGATOR);
     if (id === "newBeneficiary") {
       setBasicInformation({
         id: Date.now(),
@@ -106,6 +112,7 @@ export default function BeneficiaryDetails() {
             <PrimaryDetails
               initialData={basicInformation}
               isEditMode={id === "newBeneficiary"}
+              isUserNavigator={isUserNavigator}
             />
           </Grid>
 
@@ -114,25 +121,32 @@ export default function BeneficiaryDetails() {
             className="beneficiary-documents"
             style={{ width: "100%" }}
           >
-            <UploadDocuments initialDocumentList={initialDocumentList} />
-          </Grid>
-          <Grid
-            item
-            className="beneficiary-documents"
-            style={{ width: "100%" }}
-          >
-            <ServiceList initialServices={services} />
-          </Grid>
-          <Grid
-            item
-            className="beneficiary-documents"
-            style={{ width: "100%" }}
-          >
-            <TaskListForBeneficiary
-              initialTasks={scheduledTasks}
-              beneficiaryId={basicInformation?.id}
+            <UploadDocuments
+              initialDocumentList={initialDocumentList}
+              isUserNavigator={isUserNavigator}
             />
           </Grid>
+          {isUserNavigator && (
+            <>
+              <Grid
+                item
+                className="beneficiary-documents"
+                style={{ width: "100%" }}
+              >
+                <ServiceList initialServices={services} />
+              </Grid>
+              <Grid
+                item
+                className="beneficiary-documents"
+                style={{ width: "100%" }}
+              >
+                <TaskListForBeneficiary
+                  initialTasks={scheduledTasks}
+                  beneficiaryId={basicInformation?.id}
+                />
+              </Grid>
+            </>
+          )}
         </Grid>
       )}
     </div>

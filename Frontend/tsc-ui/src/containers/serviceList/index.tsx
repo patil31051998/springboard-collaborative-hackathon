@@ -49,6 +49,7 @@ export const ServiceList = ({ initialServices }: any) => {
   const handleSubmit = (serviceData: any) => {
     // You can send the service data to your API here
     console.log(serviceData);
+    setServices([...services, serviceData]);
   };
 
   return (
@@ -72,7 +73,7 @@ export const ServiceList = ({ initialServices }: any) => {
           <Typography variant="h6">All Services</Typography>
         </span>
         {services.map((service: any, index: any) => (
-          <CommentAccordion key={index} service={service} />
+          <CommentAccordion key={service?.name + index} service={service} />
         ))}
       </CardContent>
     </Card>
@@ -171,25 +172,15 @@ const CommentAccordion = ({ service }: any) => {
         <div
           style={{ display: "flex", flexDirection: "column", width: "100%" }}
         >
-          <div>
-            <Typography variant="h6">Comments</Typography>
-            <List>
-              {activityLog?.map((activity: any, index: any) => (
-                <ListItem key={index}>
-                  <ListItemIcon>
-                    <CommentOutlinedIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary={activity?.comment} />
-                  <Typography variant="caption">
-                    {activity?.timeStamp?.toLocaleString()}
-                  </Typography>
-                </ListItem>
-              ))}
-            </List>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "15px",
+            }}
+          >
             <TextField
-              label="Write a Comment"
+              label="Write a Comment..."
               variant="outlined"
               fullWidth
               value={comment}
@@ -205,6 +196,23 @@ const CommentAccordion = ({ service }: any) => {
             >
               Comment
             </Button>
+          </div>
+          <div>
+            <Typography variant="h6">Previous comments</Typography>
+
+            <List>
+              {activityLog?.map((activity: any, index: any) => (
+                <ListItem key={index}>
+                  <ListItemIcon>
+                    <CommentOutlinedIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={activity?.comment} />
+                  <Typography variant="caption">
+                    {activity?.timeStamp?.toLocaleString()}
+                  </Typography>
+                </ListItem>
+              ))}
+            </List>
           </div>
         </div>
       </AccordionDetails>

@@ -28,3 +28,7 @@
   opacity: 1;
   -webkit-text-fill-color: rgba(0, 0, 0, 1) !important;
 }
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.5) !important;
+}

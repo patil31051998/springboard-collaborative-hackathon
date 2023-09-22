@@ -35,6 +35,7 @@ import ListItemText from "@mui/material/ListItemText";
 import RuleIcon from "@mui/icons-material/Rule";
 import PeopleIcon from "@mui/icons-material/People";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CaseWorkerRequests from "../containers/case-worker-requests";
@@ -240,6 +241,18 @@ export default function Dashboard() {
                     </ListItemIcon>
                     <ListItemText primary="Calendar" />
                   </ListItemButton>
+                  <ListItemButton
+                    selected={activeMenu === "about"}
+                    onClick={() => {
+                      setActiveMenu("about");
+                      navigate("/tsc/about");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <HelpOutlineIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="about" />
+                  </ListItemButton>
                 </>
               ) : (
                 <>
@@ -266,6 +279,18 @@ export default function Dashboard() {
                       <CalendarMonthIcon />
                     </ListItemIcon>
                     <ListItemText primary="Calendar" />
+                  </ListItemButton>
+                  <ListItemButton
+                    selected={activeMenu === "about"}
+                    onClick={() => {
+                      setActiveMenu("about");
+                      navigate("/tsc/about");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <HelpOutlineIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Know More" />
                   </ListItemButton>
                 </>
               )}

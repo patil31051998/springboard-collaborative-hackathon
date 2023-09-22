@@ -5,7 +5,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 
-export const PrimaryDetails = ({ initialData, isEditMode }: any) => {
+export const PrimaryDetails = ({
+  initialData,
+  isEditMode,
+  isUserNavigator,
+}: any) => {
   const [isEditing, setIsEditing] = useState(isEditMode);
   const [data, setData] = useState(initialData);
 
@@ -143,14 +147,16 @@ export const PrimaryDetails = ({ initialData, isEditMode }: any) => {
             />
           </Grid>
         </Grid>
-        <Button
-          sx={{ marginTop: "1rem", marginLeft: "90%" }}
-          variant="contained"
-          color="primary"
-          onClick={isEditing ? handleSaveClick : handleEditClick}
-        >
-          {isEditing ? "Save details" : "Edit details"}
-        </Button>
+        {isUserNavigator && (
+          <Button
+            sx={{ marginTop: "1rem", marginLeft: "90%" }}
+            variant="contained"
+            color="primary"
+            onClick={isEditing ? handleSaveClick : handleEditClick}
+          >
+            {isEditing ? "Save details" : "Edit details"}
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

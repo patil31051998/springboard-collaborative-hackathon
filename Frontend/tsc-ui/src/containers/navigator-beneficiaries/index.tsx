@@ -10,6 +10,10 @@ import { assignToBeneficiary, getInitialData } from "../../services";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../services/context/globalContext";
 import { Typography } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { blue, red } from "@mui/material/colors";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default function NavigatorBeneficiaries() {
   const { userDetails } = useGlobalContext();
@@ -136,7 +140,18 @@ export default function NavigatorBeneficiaries() {
   return (
     <div className="Beneficiaries">
       <Typography variant="h5" gutterBottom>
-        Beneficiaries
+        <div
+          className="beneficiaries-header"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          Beneficiaries
+          <Tooltip
+            title="Double click on row to view details"
+            placement="bottom"
+          >
+            <InfoOutlinedIcon sx={{ color: blue[500], marginLeft: "10px" }} />
+          </Tooltip>
+        </div>
       </Typography>
       <div className="beneficiaries_filter_buttons">
         <div className="filter-button-group">

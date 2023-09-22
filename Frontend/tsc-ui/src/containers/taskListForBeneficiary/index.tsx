@@ -6,6 +6,10 @@ import {
   Button,
   TextField,
   IconButton,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -48,6 +52,7 @@ const TaskCard = ({ tasks, addTask, deleteTask, beneficiaryId }: any) => {
     startTime: "",
     endTime: "",
     description: "",
+    service: "",
   });
 
   const handleInputChange = (event: any) => {
@@ -74,6 +79,7 @@ const TaskCard = ({ tasks, addTask, deleteTask, beneficiaryId }: any) => {
       startTime: "",
       endTime: "",
       description: "",
+      service: "",
     });
   };
 
@@ -101,11 +107,23 @@ const TaskCard = ({ tasks, addTask, deleteTask, beneficiaryId }: any) => {
         >
           <TextField
             size="small"
-            label="Navigator ID"
-            name="navigatorId"
-            value={newTask.navigatorId}
+            label="Description"
+            name="description"
+            value={newTask.description}
             onChange={handleInputChange}
           />
+          <FormControl sx={{ width: "15rem" }} size="small">
+            <InputLabel>Service</InputLabel>
+            <Select
+              name="Service"
+              value={newTask.service}
+              onChange={handleInputChange}
+            >
+              {["Service1", "Service 2", "Service 3"].map((option: any) => (
+                <MenuItem value="pending">Pending</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             size="small"
             label="Start Time"
@@ -120,13 +138,7 @@ const TaskCard = ({ tasks, addTask, deleteTask, beneficiaryId }: any) => {
             value={newTask.endTime}
             onChange={handleInputChange}
           />
-          <TextField
-            size="small"
-            label="Description"
-            name="description"
-            value={newTask.description}
-            onChange={handleInputChange}
-          />
+
           <Button variant="contained" onClick={handleAddTask}>
             Add Task
           </Button>
