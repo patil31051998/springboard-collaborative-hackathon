@@ -8,7 +8,7 @@ const mockData = [
     lastName: "George",
     gender: "female",
     contact: "+1 (855) 550-2255",
-    navigator: "Vinay Desai",
+    navigatorId:"test1",  navigator: "Vinay Desai",
     mhProvider: ["Lorem"],
     sudProvider: ["enim"],
     need: ["exercitation", "consectetur"],
@@ -23,6 +23,7 @@ const mockData = [
     lastName: "Prince",
     gender: "female",
     contact: "+1 (854) 580-3085",
+    navigatorId:"dummy",
     navigator: "Misty Hayes",
     mhProvider: ["qui"],
     sudProvider: ["id"],
@@ -38,6 +39,7 @@ const mockData = [
     lastName: "Salazar",
     gender: "male",
     contact: "+1 (920) 405-3380",
+    navigatorId:"",
     navigator: "",
     mhProvider: ["non"],
     sudProvider: ["et"],
@@ -53,6 +55,7 @@ const mockData = [
     lastName: "King",
     gender: "male",
     contact: "+1 (993) 514-3201",
+    navigatorId:"dummy",
     navigator: "Mcdowell Page",
     mhProvider: ["sit"],
     sudProvider: ["id"],
@@ -68,6 +71,7 @@ const mockData = [
     lastName: "Sandoval",
     gender: "male",
     contact: "+1 (940) 523-2400",
+    navigatorId:"",
     navigator: "",
     mhProvider: ["non"],
     sudProvider: ["laboris"],
@@ -83,6 +87,7 @@ const mockData = [
     lastName: "Bird",
     gender: "male",
     contact: "+1 (838) 516-3681",
+    navigatorId:"dummy",
     navigator: "Mcdowell Page",
     mhProvider: ["nostrud"],
     sudProvider: ["ex"],
@@ -98,7 +103,7 @@ const mockData = [
     lastName: "Kinney",
     gender: "female",
     contact: "+1 (876) 410-3355",
-    navigator: "Vinay Desai",
+    navigatorId:"test1",  navigator: "Vinay Desai",
     mhProvider: ["veniam"],
     sudProvider: ["anim"],
     need: ["ad", "ad"],
@@ -113,6 +118,7 @@ const mockData = [
     lastName: "Clarke",
     gender: "male",
     contact: "+1 (840) 557-2944",
+    navigatorId:"dummy",
     navigator: "Mcdowell Page",
     mhProvider: ["consequat"],
     sudProvider: ["cupidatat"],
@@ -128,7 +134,7 @@ const mockData = [
     lastName: "Terrell",
     gender: "female",
     contact: "+1 (943) 416-2734",
-    navigator: "Vinay Desai",
+    navigatorId:"test1",  navigator: "Vinay Desai",
     mhProvider: ["anim"],
     sudProvider: ["nisi"],
     need: ["ex", "aliqua"],
@@ -146,7 +152,7 @@ const mockRequestData = [
     lastName: "George",
     gender: "female",
     contact: "+1 (855) 550-2255",
-    navigator: "Vinay Desai",
+    navigatorId:"test1",  navigator: "Vinay Desai",
     mhProvider: ["Lorem"],
     sudProvider: ["enim"],
     need: ["exercitation", "consectetur"],
@@ -162,6 +168,7 @@ const mockRequestData = [
     lastName: "Prince",
     gender: "female",
     contact: "+1 (854) 580-3085",
+    navigatorId:"dummy",
     navigator: "Misty Hayes",
     mhProvider: ["qui"],
     sudProvider: ["id"],
@@ -178,6 +185,7 @@ const mockRequestData = [
     lastName: "Salazar",
     gender: "male",
     contact: "+1 (920) 405-3380",
+    navigatorId:"",
     navigator: "",
     mhProvider: ["non"],
     sudProvider: ["et"],
@@ -195,6 +203,7 @@ const mockRequestData = [
     lastName: "King",
     gender: "male",
     contact: "+1 (993) 514-3201",
+    navigatorId:"dummy",
     navigator: "Mcdowell Page",
     mhProvider: ["sit"],
     sudProvider: ["id"],
@@ -211,6 +220,7 @@ const mockRequestData = [
     lastName: "Sandoval",
     gender: "male",
     contact: "+1 (940) 523-2400",
+    navigatorId:"",
     navigator: "",
     mhProvider: ["non"],
     sudProvider: ["laboris"],
@@ -227,6 +237,7 @@ const mockRequestData = [
     lastName: "Bird",
     gender: "male",
     contact: "+1 (838) 516-3681",
+    navigatorId:"dummy",
     navigator: "Mcdowell Page",
     mhProvider: ["nostrud"],
     sudProvider: ["ex"],
@@ -243,7 +254,7 @@ const mockRequestData = [
     lastName: "Kinney",
     gender: "female",
     contact: "+1 (876) 410-3355",
-    navigator: "Vinay Desai",
+    navigatorId:"test1",  navigator: "Vinay Desai",
     mhProvider: ["veniam"],
     sudProvider: ["anim"],
     need: ["ad", "ad"],
@@ -259,6 +270,7 @@ const mockRequestData = [
     lastName: "Clarke",
     gender: "male",
     contact: "+1 (840) 557-2944",
+    navigatorId:"dummy",
     navigator: "Mcdowell Page",
     mhProvider: ["consequat"],
     sudProvider: ["cupidatat"],
@@ -275,7 +287,7 @@ const mockRequestData = [
     lastName: "Terrell",
     gender: "female",
     contact: "+1 (943) 416-2734",
-    navigator: "Vinay Desai",
+    navigatorId:"test1",  navigator: "Vinay Desai",
     mhProvider: ["anim"],
     sudProvider: ["nisi"],
     need: ["ex", "aliqua"],
@@ -311,4 +323,15 @@ export const updateApprovalStatus = (userId: string, status: string) => {
   if(user){
     user.approvalStatus = status;
   }
+}
+
+export const assignToBeneficiary = (beneficiaryId: string, userId?: string, userName?: string) => {
+ return new Promise((resolve) => {
+  const beneficiary = mockData.find(row => row.id === beneficiaryId);
+  if(beneficiary && userId && userName) {
+    beneficiary.navigator = userName
+    beneficiary.navigatorId = userId
+  }
+  resolve(null)
+ })
 }
