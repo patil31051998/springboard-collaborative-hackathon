@@ -38,6 +38,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CaseWorkerRequests from "../containers/case-worker-requests";
+import CalendarView from "../containers/calendarView";
 
 function Copyright(props: any) {
   return (
@@ -300,7 +301,7 @@ export default function Dashboard() {
                     path="/case-worker-requests"
                     element={<CaseWorkerRequests />}
                   />
-                  <Route path="/taskList" element={<TaskList />} />
+                  <Route path="/taskList" element={<CalendarView />} />
                 </Routes>
               </Grid>
             </Grid>
