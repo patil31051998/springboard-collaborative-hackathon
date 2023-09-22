@@ -33,11 +33,12 @@ import TaskList from "../containers/taskList";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
+import RuleIcon from '@mui/icons-material/Rule';
 import PeopleIcon from "@mui/icons-material/People";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import CaseWorkerRequests from "../containers/case-worker-requests";
 
 function Copyright(props: any) {
   return (
@@ -222,7 +223,7 @@ export default function Dashboard() {
                     }}
                   >
                     <ListItemIcon>
-                      <PeopleIcon />
+                    <RuleIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Requests" />
                   </ListItemButton>
@@ -297,8 +298,8 @@ export default function Dashboard() {
                     element={<BeneficiaryDetails />}
                   />
                   <Route
-                    path="/tsc/case-worker-requests"
-                    element={<BeneficiaryDetails />}
+                    path="/case-worker-requests"
+                    element={<CaseWorkerRequests />}
                   />
                   <Route path="/taskList" element={<TaskList />} />
                 </Routes>
