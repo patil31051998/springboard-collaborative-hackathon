@@ -8,6 +8,16 @@ import AddIcon from "@mui/icons-material/Add";
 import "./beneficiaries.css";
 import { getInitialData } from "../../services";
 import { Link, useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../services/context/globalContext";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+  Divider,
+  Avatar,
+} from "@mui/material";
 
 const columns: GridColDef[] = [
   { field: "cabinNo", headerName: "Cabin No.", width: 90 },
@@ -66,7 +76,7 @@ const columns: GridColDef[] = [
           size="small"
           onClick={handleAssignNavigator}
         >
-          Assigned to me
+          Assign to me
         </Button>
       );
     },
@@ -74,13 +84,14 @@ const columns: GridColDef[] = [
 ];
 
 export default function Beneficiaries() {
+  const { userDetails } = useGlobalContext();
   const [rows, setRows] = useState([]);
   const [initialRows, setInitialRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeButton, setActiveButton] = useState(1);
   const navigate = useNavigate();
 
-  const navigator = "Sarah Walton";
+  const navigator = `${userDetails?.firstName} ${userDetails?.lastName}`;
   useEffect(() => {
     getInitialData()
       .then((response: any) => {
@@ -113,7 +124,11 @@ export default function Beneficiaries() {
 
   const handleRowDoubleClick = (params: any) => {
     // Log the row data when double-clicked
-    console.log("Double-clicked row:", params.row);
+    navigate(`/tsc/beneficiaryDetails/${params.row.id}`);
+  };
+
+  const handleAddNewBeneficiary = () => {
+    navigate("/tsc/beneficiaryDetails/uuid");
   };
 
   return loading ? (
@@ -125,7 +140,9 @@ export default function Beneficiaries() {
     </div>
   ) : (
     <div className="Beneficiaries">
-      <h1>Beneficiaries</h1>
+      <Typography variant="h5" gutterBottom>
+        Beneficiaries
+      </Typography>
       <div className="beneficiaries_filter_buttons">
         <div className="filter-button-group">
           <Button
@@ -154,7 +171,7 @@ export default function Beneficiaries() {
         <Button
           variant="contained"
           endIcon={<AddIcon />}
-          onClick={() => navigate("/tsc/beneficiaryDetails")}
+          onClick={handleAddNewBeneficiary}
         >
           Add new Beneficiary
         </Button>

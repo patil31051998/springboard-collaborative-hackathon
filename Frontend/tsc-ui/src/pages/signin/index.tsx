@@ -41,7 +41,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const {login} = useGlobalContext()
+  const { login } = useGlobalContext();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -50,12 +50,11 @@ export default function SignIn() {
     if (username && password) {
       loginUser(username.toString()).then(
         (userDetails) => {
-          login?.(userDetails)
+          login?.(userDetails);
           navigate("/tsc");
         },
         () => {}
       );
-      
     }
   };
 
@@ -85,7 +84,7 @@ export default function SignIn() {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                SpringBoard Collaborative
+                The SpringBoard Collaborative
               </Typography>
             </Toolbar>
           </MuiAppBar>

@@ -1,4 +1,10 @@
 import * as React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -23,6 +29,15 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { UserType } from "../types/login";
 import { Chip } from "@mui/material";
 import BeneficiaryDetails from "../containers/beneficiaryDetails";
+import TaskList from "../containers/taskList";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import PeopleIcon from "@mui/icons-material/People";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 function Copyright(props: any) {
   return (
@@ -97,7 +112,10 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(false);
+  const [activeMenu, setActiveMenu] = React.useState("Beneficiaries");
   const { userDetails, logout } = useGlobalContext();
+  const navigate = useNavigate();
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -131,7 +149,7 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              SpringBoard Collaborative
+              The SpringBoard Collaborative
             </Typography>
             <Typography
               component="h4"
@@ -181,7 +199,32 @@ export default function Dashboard() {
             ) : (
               <Divider />
             )}
-            {mainListItems}
+            <>
+              <ListItemButton
+                selected={activeMenu === "Beneficiaries"}
+                onClick={() => {
+                  setActiveMenu("Beneficiaries");
+                  navigate("/tsc");
+                }}
+              >
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Beneficiaries" />
+              </ListItemButton>
+              <ListItemButton
+                selected={activeMenu === "Calendar"}
+                onClick={() => {
+                  setActiveMenu("Calendar");
+                  navigate("/tsc/taskList");
+                }}
+              >
+                <ListItemIcon>
+                  <CalendarMonthIcon />
+                </ListItemIcon>
+                <ListItemText primary="Calendar" />
+              </ListItemButton>
+            </>
           </List>
         </Drawer>
         <Box
@@ -200,8 +243,18 @@ export default function Dashboard() {
           <Container style={{ maxWidth: "100%" }}>
             <Grid container spacing={3}>
               <Grid item sx={{ width: "100%", height: 128 }}>
-                <Beneficiaries />
-                {/* <BeneficiaryDetails /> */}
+                <Routes>
+                  <Route index path="/" element={<Beneficiaries />} />
+                  <Route
+                    path="/beneficiaryDetails/:id"
+                    element={<BeneficiaryDetails />}
+                  />
+                  <Route
+                    path="/beneficiaryDetails"
+                    element={<BeneficiaryDetails />}
+                  />
+                  <Route path="/taskList" element={<TaskList />} />
+                </Routes>
               </Grid>
             </Grid>
             {/* <Copyright sx={{ pt: 4, marginTop: "95vh" }} /> */}

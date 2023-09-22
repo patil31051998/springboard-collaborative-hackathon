@@ -13,10 +13,10 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route index path="/" element={<SignIn />} />
             <Route path="/login" element={<SignIn />} />
-            <Route path="/tsc" element={<Home />}>
-              <Route path="beneficiaries" element={<Beneficiaries />} />
+            <Route path="/tsc/*" element={<Home />}>
+              {/* <Route  path="beneficiaries" element={<Beneficiaries />} /> */}
               <Route
                 path="beneficiaryDetails"
                 element={<BeneficiaryDetails />}

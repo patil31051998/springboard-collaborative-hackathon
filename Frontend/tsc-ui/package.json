@@ -11,6 +11,7 @@
     "@types/node": "^16.18.52",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
+    "axios": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -25,9 +26,9 @@
     "eject": "react-scripts eject",
     "build-and-push": "npm install && npm run build && npm run docker-build && npm run aws-login &&  npm run docker-tag && npm run docker-push",
     "docker-build": "docker build -t cb-tsc-ui .",
-    "docker-tag": "docker tag cb-tsc-ui:latest 448321808773.dkr.ecr.us-east-1.amazonaws.com/cookie-bytes-ui:latest",
-    "docker-push": "docker push 448321808773.dkr.ecr.us-east-1.amazonaws.com/cookie-bytes-ui:latest",
-    "aws-login" : "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 448321808773.dkr.ecr.us-east-1.amazonaws.com"
+    "docker-tag": "docker tag cb-tsc-ui:latest 365309493706.dkr.ecr.ap-southeast-2.amazonaws.com/cookie-bytes:latest",
+    "docker-push": "docker push 36530949370.dkr.ecr.ap-southeast-2.amazonaws.com/cookie-bytes/ui:latest",
+    "aws-login": "aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 365309493706.dkr.ecr.ap-southeast-2.amazonaws.com"
   },
   "eslintConfig": {
     "extends": [

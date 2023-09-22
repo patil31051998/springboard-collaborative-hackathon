@@ -1,12 +1,12 @@
-import * as React from 'react';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import PeopleIcon from '@mui/icons-material/People';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import * as React from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import PeopleIcon from "@mui/icons-material/People";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 export const mainListItems = (
   <React.Fragment>
@@ -22,7 +22,6 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="My Calendar" />
     </ListItemButton>
-   
   </React.Fragment>
 );
 

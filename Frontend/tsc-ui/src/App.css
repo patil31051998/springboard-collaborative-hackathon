@@ -15,3 +15,16 @@
 .App-header {
   text-align: center;
 }
+
+.MuiButtonBase-root {
+  text-transform: none !important;
+}
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled {
+  color: black !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: rgba(0, 0, 0, 1) !important;
+}
