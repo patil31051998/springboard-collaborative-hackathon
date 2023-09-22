@@ -1,3 +1,4 @@
+import axios from "axios";
 import { UserType } from "../types/login";
 
 const mockData = [
@@ -681,12 +682,13 @@ const simulateApiRequest = (data: any[]): Promise<any[]> => {
   });
 };
 
+const baseHost = axios.create({baseURL: "http://localhost:8080/"})
 export const getInitialData = () => {
-  return simulateApiRequest(mockData);
+  return baseHost.get("/users/allBeneficiaries").then(res => res.data.map((row:any) => ({...row, id: row.beneficiaryID})));
 };
 
-export const getCaseWorkerBeneficiaries = () => {
-  return simulateApiRequest(mockData);
+export const getCaseWorkerBeneficiaries = (id: string) => {
+  return axios.get("/users/beneficiaries", {params: {id}});
 };
 
 export const getRequestsForCaseWorker = () => {
@@ -701,12 +703,14 @@ export const updateApprovalStatus = (userId: string, status: string) => {
 };
 
 export const assignToBeneficiary = (
-  beneficiaryId: string,
+  beneficiaryID: string,
   userId?: string,
   userName?: string
 ) => {
+
+  return baseHost.put("/users/beneficiaries/assignNavigator", null, {params: {beneficiaryID, navigatorID: userId}})
   return new Promise((resolve) => {
-    const beneficiary = mockData.find((row) => row.id === beneficiaryId);
+    const beneficiary = mockData.find((row) => row.id === beneficiaryID);
     if (beneficiary && userId && userName) {
       beneficiary.navigator = userName;
       beneficiary.navigatorId = userId;

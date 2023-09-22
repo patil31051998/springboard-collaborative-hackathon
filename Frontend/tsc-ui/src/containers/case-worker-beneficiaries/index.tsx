@@ -59,9 +59,9 @@ export default function CaseWorkerBeneficiaries() {
   const [activeButton, setActiveButton] = useState(1);
   const navigate = useNavigate();
 
-  const navigator = `${userDetails?.firstName} ${userDetails?.lastName}`;
   useEffect(() => {
-    getCaseWorkerBeneficiaries()
+    if(userDetails) {
+      getCaseWorkerBeneficiaries(userDetails?.userID)
       .then((response: any) => {
         setRows(response);
         setInitialRows(response);
@@ -71,7 +71,9 @@ export default function CaseWorkerBeneficiaries() {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }, []);
+    }
+    
+  }, [userDetails?.userID]);
 
   const handleFilterClick = (filterType: string) => {
     if (filterType === "active") {

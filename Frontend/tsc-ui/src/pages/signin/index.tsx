@@ -48,7 +48,7 @@ export default function SignIn() {
     const username = data.get("username");
     const password = data.get("password");
     if (username && password) {
-      loginUser(username.toString()).then(
+      loginUser(username.toString(), password.toString()).then(
         (userDetails) => {
           login?.(userDetails);
           navigate("/tsc");

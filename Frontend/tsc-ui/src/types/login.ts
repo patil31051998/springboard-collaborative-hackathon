@@ -1,7 +1,7 @@
 export type User = {
     firstName: string,
         lastName: string,
-        userId:string,
+        userID:string,
         userType: UserType,
         contactNo: string
 }

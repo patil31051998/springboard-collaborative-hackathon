@@ -23,12 +23,12 @@ export default function UserCalendar () {
 
  React.useEffect(() =>{
     if(userDetails) {
-        getScheduledTasks(userDetails?.userType, userDetails?.userId).then((tasks: ScheduleTaskResponse[]) => {
+        getScheduledTasks(userDetails?.userType, userDetails?.userID).then((tasks: ScheduleTaskResponse[]) => {
             const convertedTasks = tasks.map(task =>({title: `${task.description} [${task.beneficiaryName}]` , start: new Date(task.startTime), end: new Date(task.endTime), color: getColor.next().value as string}));
             setTasks(convertedTasks)
         })
     }
     
- },[userDetails?.userId])
+ },[userDetails?.userID])
     return <CalendarView tasks={tasks}/>
 }

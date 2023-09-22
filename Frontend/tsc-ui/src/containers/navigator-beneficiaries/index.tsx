@@ -53,30 +53,31 @@ export default function NavigatorBeneficiaries() {
     {
       field: "need",
       headerName: "Need",
+      valueFormatter: (params) => params.value.join(","),
       flex: 1,
     },
-    {
-      field: "contact",
-      headerName: "Contact",
-      flex: 1,
-    },
+    // {
+    //   field: "contact",
+    //   headerName: "Contact",
+    //   flex: 1,
+    // },
     {
       field: "navigator",
       headerName: "Navigator",
       flex: 1,
       renderCell: (params) => {
-        const { navigator, id } = params.row;
+        const { navigatorID, id } = params.row;
         const handleAssignNavigator = () => {
           assignToBeneficiary(
             id,
-            userDetails?.userId,
+            userDetails?.userID,
             userDetails?.firstName + " " + userDetails?.lastName
           ).then(() => {
             fetchData();
-          });
+          }).catch(console.error);
         };
-        return navigator ? (
-          <div>{navigator}</div>
+        return navigatorID ? (
+          <div>{navigatorID}</div>
         ) : (
           <Button
             style={{
@@ -114,10 +115,10 @@ export default function NavigatorBeneficiaries() {
   const filterRows = (rows: any[], filterType: string) => {
     return rows.filter((row) => {
       if (filterType === "ASSIGNED") {
-        return row?.navigatorId === userDetails?.userId;
+        return row?.navigatorID === userDetails?.userID;
       }
       if (filterType === "UNASSIGNED") {
-        return row?.navigatorId === "";
+        return row?.navigatorID === "";
       }
       return true;
     });
@@ -168,7 +169,7 @@ export default function NavigatorBeneficiaries() {
             variant={filter === "ASSINGED" ? "contained" : "outlined"}
             onClick={() => handleFilterClick("ASSIGNED")}
           >
-            Assigned to me
+            My Beneficiaries
           </Button>
           <Button
             color="primary"
