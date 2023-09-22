@@ -1,0 +1,16 @@
+.Beneficiaries {
+  margin: 5px;
+}
+
+.beneficiaries_filter_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50%;
+}
