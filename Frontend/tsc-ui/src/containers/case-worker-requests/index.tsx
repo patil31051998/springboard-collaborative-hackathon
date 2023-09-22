@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef,  } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
-import { getCaseWorkerBeneficiaries, getInitialData, getRequestsForCaseWorker, updateApprovalStatus } from "../../services";
-import {  useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../services/context/globalContext";
 import {
-    ButtonGroup,
-  Typography,
-} from "@mui/material";
-
-
+  getCaseWorkerBeneficiaries,
+  getInitialData,
+  getRequestsForCaseWorker,
+  updateApprovalStatus,
+} from "../../services";
+import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../services/context/globalContext";
+import { ButtonGroup, Typography } from "@mui/material";
 
 export default function CaseWorkerRequests() {
   const { userDetails } = useGlobalContext();
@@ -22,9 +22,9 @@ export default function CaseWorkerRequests() {
 
   const updateUserApprovalStatus = (userId: string, approvalStatus: string) => {
     updateApprovalStatus(userId, approvalStatus);
-    fetchData()
-  }
-  
+    fetchData();
+  };
+
   const columns: GridColDef[] = [
     { field: "cabinNo", headerName: "Cabin No.", width: 90 },
     {
@@ -57,20 +57,42 @@ export default function CaseWorkerRequests() {
       headerName: "Actions",
       flex: 1,
       renderCell: (params) => {
-        return <ButtonGroup variant="contained" aria-label="outlined primary button group">
-        <Button color="success" onClick={() => updateUserApprovalStatus(params.row.id, "APPROVED")}>Approve</Button>
-        <Button color="error" onClick={() => updateUserApprovalStatus(params.row.id, "REJECTED")}>Reject</Button>
-  
-      </ButtonGroup>
-      }
+        return (
+          <ButtonGroup
+            variant="contained"
+            aria-label="outlined primary button group"
+          >
+            <Button
+              color="success"
+              onClick={() =>
+                updateUserApprovalStatus(params.row.id, "APPROVED")
+              }
+            >
+              Approve
+            </Button>
+            <Button
+              color="error"
+              onClick={() =>
+                updateUserApprovalStatus(params.row.id, "REJECTED")
+              }
+            >
+              Reject
+            </Button>
+          </ButtonGroup>
+        );
+      },
     },
   ];
 
-  const fetchData= () => {
+  const fetchData = () => {
     setLoading(true);
     getRequestsForCaseWorker()
       .then((response: any[]) => {
-        const filteredRows = response.filter(row => (filter === "PENDING" && row.approvalStatus === "PENDING" )|| (filter === "REJECTED" && row.approvalStatus === "REJECTED" ))   
+        const filteredRows = response.filter(
+          (row) =>
+            (filter === "PENDING" && row.approvalStatus === "PENDING") ||
+            (filter === "REJECTED" && row.approvalStatus === "REJECTED")
+        );
         setRows(filteredRows);
         setLoading(false);
       })
@@ -78,14 +100,14 @@ export default function CaseWorkerRequests() {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }
+  };
 
   useEffect(() => {
     fetchData();
   }, [filter]);
 
   const handleFilterClick = (filterType: string) => {
-    setFilter(filterType)
+    setFilter(filterType);
   };
 
   const handleRowDoubleClick = (params: any) => {
@@ -93,9 +115,13 @@ export default function CaseWorkerRequests() {
     navigate(`/tsc/beneficiaryDetails/${params.row.id}`);
   };
 
-  const columnVisibility = React.useMemo(() => ({t: filter === "PENDING"}), [filter])
+  const columnVisibility = React.useMemo(
+    () => ({ t: filter === "PENDING" }),
+    [filter]
+  );
 
-  return ( <div className="Beneficiaries">
+  return (
+    <div className="Beneficiaries">
       <Typography variant="h5" gutterBottom>
         Requests
       </Typography>
@@ -120,33 +146,31 @@ export default function CaseWorkerRequests() {
       </div>
       <div className="beneficiaries-grid">
         <Box sx={{ height: "100%", width: "100%" }}>
-            {
-                loading ? (
-                    <div className="loading">
-                      {" "}
-                      <Box sx={{ display: "flex" }}>
-                        <CircularProgress />
-                      </Box>
-                    </div>
-                  ) :(<DataGrid
-                    rows={rows}
-                    columns={columns}
-                    columnVisibilityModel={columnVisibility}
-                    initialState={{
-                      pagination: {
-                        paginationModel: {
-                          pageSize: 10,
-                        },
-                      },
-                    }}
-                    pageSizeOptions={[10]}
-                    onRowDoubleClick={handleRowDoubleClick}
-                    disableRowSelectionOnClick
-                  />)
-            }
-          
+          {loading ? (
+            <div className="loading">
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress />
+              </Box>
+            </div>
+          ) : (
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              columnVisibilityModel={columnVisibility}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 10,
+                  },
+                },
+              }}
+              pageSizeOptions={[10]}
+              onRowDoubleClick={handleRowDoubleClick}
+              disableRowSelectionOnClick
+            />
+          )}
         </Box>
       </div>
     </div>
-   );
+  );
 }

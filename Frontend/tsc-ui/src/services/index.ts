@@ -1,3 +1,5 @@
+import { UserType } from "../types/login";
+
 const mockData = [
   {
     id: "6509c54e0909d275733b3c04",
@@ -576,6 +578,100 @@ const mockServiceData = [
   },
 ];
 
+const scheduledTaks = [
+  {
+    id: "650c7af5de434511c5622ad9",
+    beneficiaryId: "650c7af5ea6ee8d6ddc93460",
+    beneficiaryName: "Vinay Desai",
+    navigatorId: "650c7af5ccabf664089dc4cc",
+    startTime: new Date(2023, 9, 22, 10, 7).getTime(),
+    endTime: new Date(2023, 9, 28, 10, 7).getTime(),
+    description: "sunt cupidatat aute minim ullamco",
+  },
+  {
+    id: "650c7af58b35fed0c5d7d9ff",
+    beneficiaryId: "650c7af5e3761f0eb2baf1d1",
+    navigatorId: "650c7af5962012ff903bebf2",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 10, 2, 10, 7).getTime(),
+    endTime: new Date(2023, 10, 8, 10, 7).getTime(),
+    description: "magna non id anim labore",
+  },
+  {
+    id: "650c7af5ea29c101e0544cf6",
+    beneficiaryId: "650c7af5c693428ddfbfd10c",
+    navigatorId: "650c7af5b89cf07674e30d4c",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 9, 22, 20, 7).getTime(),
+    endTime: new Date(2023, 9, 28, 10, 7).getTime(),
+    description: "excepteur officia commodo qui nulla",
+  },
+  {
+    id: "650c7af52602fbb2a98bf5cf",
+    beneficiaryId: "650c7af5734429b7e6d7042b",
+    beneficiaryName: "Vinay Desai",
+    navigatorId: "650c7af55f9212e28c2dfe1c",
+    startTime: new Date(2023, 9, 25, 10, 7).getTime(),
+    endTime: new Date(2023, 9, 28, 10, 7).getTime(),
+    description: "cupidatat quis in nisi eiusmod",
+  },
+  {
+    id: "650c7af515cdc8e13a368615",
+    beneficiaryId: "650c7af5338536b066be0e93",
+    beneficiaryName: "Vinay Desai",
+    navigatorId: "650c7af5bff9510e71343e5e",
+    startTime: new Date(2023, 8, 28, 10, 7).getTime(),
+    endTime: new Date(2023, 8, 28, 14, 7).getTime(),
+    description: "nulla mollit deserunt ullamco ad",
+  },
+  {
+    id: "650c7af561328adb6734ef34",
+    beneficiaryId: "650c7af510eeff7f32f01888",
+    navigatorId: "650c7af5bbed04edc08837cd",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 8, 2, 10, 7).getTime(),
+    endTime: new Date(2023, 8, 28, 10, 7).getTime(),
+    description: "tempor anim aute sunt eiusmod",
+  },
+  {
+    id: "650c7af524db73537cb24f8e",
+    beneficiaryId: "650c7af5856eabde72d739a1",
+    navigatorId: "650c7af598c2eb44eef58328",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 8, 12, 10, 7).getTime(),
+    endTime: new Date(2023, 8, 28, 10, 7).getTime(),
+    description: "fugiat minim reprehenderit ea ipsum",
+  },
+  {
+    id: "650c7af5023f3855e131f789",
+    beneficiaryId: "650c7af595ed66f948519737",
+    navigatorId: "650c7af561b364141ea35ae0",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 9, 28, 10, 7).getTime(),
+    endTime: new Date(2023, 9, 28, 14, 7).getTime(),
+    description: "consectetur enim ad id incididunt",
+  },
+  {
+    id: "650c7af54c7fa3e0f5e3f4f5",
+    beneficiaryId: "650c7af5a28b3c8ae7ac9120",
+    navigatorId: "650c7af5940c3a3d755fc1d9",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 9, 22, 12, 7).getTime(),
+    endTime: new Date(2023, 10, 12, 10, 7).getTime(),
+    description: "magna ea qui occaecat reprehenderit",
+  },
+  {
+    id: "650c7af5d2fa1ef61a9fff2e",
+    beneficiaryId: "650c7af5b1b0c52f5eaeaad5",
+    navigatorId: "650c7af511caaec43c21c284",
+    beneficiaryName: "Vinay Desai",
+    startTime: new Date(2023, 10, 22, 10, 7).getTime(),
+    endTime: new Date(2023, 11, 28, 10, 7).getTime(),
+    description: "labore voluptate ipsum laboris ut",
+  },
+];
+
+
 // Simulate an API request and response delay
 const simulateApiRequest = (data: any[]): Promise<any[]> => {
   return new Promise((resolve) => {
@@ -622,3 +718,7 @@ export const assignToBeneficiary = (
 export const getAllServices = (navigatorID: string, beneficiaryID: string) => {
   return simulateApiRequest(mockServiceData);
 };
+
+export const getScheduledTasks = (userType: UserType, userId: string) => {
+  return simulateApiRequest(scheduledTaks)
+}
