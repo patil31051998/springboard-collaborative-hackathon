@@ -148,3 +148,7 @@ const simulateApiRequest = (data: any[]) => {
 export const getInitialData = () => {
   return simulateApiRequest(mockData);
 };
+
+export const getCaseWorkerBeneficiaries = () => {
+  return simulateApiRequest(mockData)
+}

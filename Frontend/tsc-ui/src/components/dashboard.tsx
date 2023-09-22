@@ -200,30 +200,73 @@ export default function Dashboard() {
               <Divider />
             )}
             <>
-              <ListItemButton
-                selected={activeMenu === "Beneficiaries"}
-                onClick={() => {
-                  setActiveMenu("Beneficiaries");
-                  navigate("/tsc");
-                }}
-              >
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Beneficiaries" />
-              </ListItemButton>
-              <ListItemButton
-                selected={activeMenu === "Calendar"}
-                onClick={() => {
-                  setActiveMenu("Calendar");
-                  navigate("/tsc/taskList");
-                }}
-              >
-                <ListItemIcon>
-                  <CalendarMonthIcon />
-                </ListItemIcon>
-                <ListItemText primary="Calendar" />
-              </ListItemButton>
+              {userDetails?.userType === UserType.CASE_WORKER ? (
+                <>
+                  <ListItemButton
+                    selected={activeMenu === "Case-Worker-Beneficiaries"}
+                    onClick={() => {
+                      setActiveMenu("Case-Worker-Beneficiaries");
+                      navigate("/tsc");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <PeopleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="My Beneficiaries" />
+                  </ListItemButton>
+                  <ListItemButton
+                    selected={activeMenu === "Case-Worker-Requests"}
+                    onClick={() => {
+                      setActiveMenu("Case-Worker-Requests");
+                      navigate("/tsc/case-worker-requests");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <PeopleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Requests" />
+                  </ListItemButton>
+                  <ListItemButton
+                    selected={activeMenu === "Calendar"}
+                    onClick={() => {
+                      setActiveMenu("Calendar");
+                      navigate("/tsc/taskList");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <CalendarMonthIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Calendar" />
+                  </ListItemButton>
+                </>
+              ) : (
+                <>
+                  <ListItemButton
+                    selected={activeMenu === "Beneficiaries"}
+                    onClick={() => {
+                      setActiveMenu("Beneficiaries");
+                      navigate("/tsc");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <PeopleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Beneficiaries" />
+                  </ListItemButton>
+                  <ListItemButton
+                    selected={activeMenu === "Calendar"}
+                    onClick={() => {
+                      setActiveMenu("Calendar");
+                      navigate("/tsc/taskList");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <CalendarMonthIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Calendar" />
+                  </ListItemButton>
+                </>
+              )}
             </>
           </List>
         </Drawer>
@@ -251,6 +294,10 @@ export default function Dashboard() {
                   />
                   <Route
                     path="/beneficiaryDetails"
+                    element={<BeneficiaryDetails />}
+                  />
+                  <Route
+                    path="/tsc/case-worker-requests"
                     element={<BeneficiaryDetails />}
                   />
                   <Route path="/taskList" element={<TaskList />} />
