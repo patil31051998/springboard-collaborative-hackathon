@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef,  } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./beneficiaries.css";
-import { getCaseWorkerBeneficiaries, getInitialData } from "../../services";
-import {  useNavigate } from "react-router-dom";
+import { getCaseWorkerBeneficiaries } from "../../services";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../services/context/globalContext";
-import {
-  Typography,
-} from "@mui/material";
+import { Typography } from "@mui/material";
 
 const columns: GridColDef[] = [
   { field: "cabinNo", headerName: "Cabin No.", width: 90 },
@@ -74,9 +72,7 @@ export default function CaseWorkerBeneficiaries() {
 
   const handleFilterClick = (filterType: string) => {
     if (filterType === "active") {
-      const filtered = initialRows?.filter(
-        (row: any) => !row?.isCompleted
-      );
+      const filtered = initialRows?.filter((row: any) => !row?.isCompleted);
       setRows(filtered);
       setActiveButton(1);
     } else if (filterType === "completed") {

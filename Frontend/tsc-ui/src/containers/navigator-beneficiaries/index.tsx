@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import ButtonGroup from "@mui/material/ButtonGroup";
+
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import AddIcon from "@mui/icons-material/Add";
 import "./beneficiaries.css";
 import { assignToBeneficiary, getInitialData } from "../../services";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../services/context/globalContext";
-import {
-
-  Typography,
-
-} from "@mui/material";
-
+import { Typography } from "@mui/material";
 
 export default function NavigatorBeneficiaries() {
   const { userDetails } = useGlobalContext();
@@ -68,9 +63,13 @@ export default function NavigatorBeneficiaries() {
       renderCell: (params) => {
         const { navigator, id } = params.row;
         const handleAssignNavigator = () => {
-          assignToBeneficiary(id, userDetails?.userId, userDetails?.firstName + " " + userDetails?.lastName).then(() => {
-            fetchData()
-          })
+          assignToBeneficiary(
+            id,
+            userDetails?.userId,
+            userDetails?.firstName + " " + userDetails?.lastName
+          ).then(() => {
+            fetchData();
+          });
         };
         return navigator ? (
           <div>{navigator}</div>
@@ -91,38 +90,38 @@ export default function NavigatorBeneficiaries() {
   ];
 
   const fetchData = () => {
-    setLoading(true)
+    setLoading(true);
     getInitialData()
-    .then((response: any) => {
-      setRows(filterRows(response, filter));
-      setInitialRows(response);
-      setLoading(false);
-    })
-    .catch((error: any) => {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    });
-  }
+      .then((response: any) => {
+        setRows(filterRows(response, filter));
+        setInitialRows(response);
+        setLoading(false);
+      })
+      .catch((error: any) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-   fetchData()
+    fetchData();
   }, []);
 
-  const filterRows = (rows: any[] ,filterType: string) => {
-    return rows.filter(row => {
-        if(filterType === "ASSIGNED") {
-            return row?.navigatorId === userDetails?.userId
-        }
-        if(filterType === "UNASSIGNED") {
-            return row?.navigatorId === "" 
-        }
-        return true
-    })
-  }
+  const filterRows = (rows: any[], filterType: string) => {
+    return rows.filter((row) => {
+      if (filterType === "ASSIGNED") {
+        return row?.navigatorId === userDetails?.userId;
+      }
+      if (filterType === "UNASSIGNED") {
+        return row?.navigatorId === "";
+      }
+      return true;
+    });
+  };
 
   const handleFilterClick = (filterType: string) => {
-    setFilter(filterType)
-    setRows(filterRows(initialRows, filterType))
+    setFilter(filterType);
+    setRows(filterRows(initialRows, filterType));
   };
 
   const handleRowDoubleClick = (params: any) => {
@@ -131,10 +130,10 @@ export default function NavigatorBeneficiaries() {
   };
 
   const handleAddNewBeneficiary = () => {
-    navigate("/tsc/beneficiaryDetails/uuid");
+    navigate("/tsc/beneficiaryDetails/newBeneficiary");
   };
 
-  return  (
+  return (
     <div className="Beneficiaries">
       <Typography variant="h5" gutterBottom>
         Beneficiaries
@@ -143,8 +142,8 @@ export default function NavigatorBeneficiaries() {
         <div className="filter-button-group">
           <Button
             color="primary"
-            variant={filter === "ALL"? "contained" : "outlined"}
-            className={filter === "ALL"? "active-button" : ""}
+            variant={filter === "ALL" ? "contained" : "outlined"}
+            className={filter === "ALL" ? "active-button" : ""}
             onClick={() => handleFilterClick("ALL")}
           >
             All
@@ -174,30 +173,29 @@ export default function NavigatorBeneficiaries() {
       </div>
       <div className="beneficiaries-grid">
         <Box sx={{ height: "100%", width: "100%" }}>
-            {
-loading ? (
-    <div className="loading">
-      {" "}
-      <Box sx={{ display: "flex" }}>
-        <CircularProgress />
-      </Box>
-    </div>
-  ): (<DataGrid
-    rows={rows}
-    columns={columns}
-    initialState={{
-      pagination: {
-        paginationModel: {
-          pageSize: 10,
-        },
-      },
-    }}
-    pageSizeOptions={[10]}
-    onRowDoubleClick={handleRowDoubleClick}
-    disableRowSelectionOnClick
-  />)
-            }
-          
+          {loading ? (
+            <div className="loading">
+              {" "}
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress />
+              </Box>
+            </div>
+          ) : (
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 10,
+                  },
+                },
+              }}
+              pageSizeOptions={[10]}
+              onRowDoubleClick={handleRowDoubleClick}
+              disableRowSelectionOnClick
+            />
+          )}
         </Box>
       </div>
     </div>

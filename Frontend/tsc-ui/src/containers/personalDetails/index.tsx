@@ -1,13 +1,12 @@
-import React, {  useState } from "react";
-import {  Grid, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, TextField, Typography } from "@mui/material";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 
-
-export const PrimaryDetails = ({ initialData }: any) => {
-  const [isEditing, setIsEditing] = useState(false);
+export const PrimaryDetails = ({ initialData, isEditMode }: any) => {
+  const [isEditing, setIsEditing] = useState(isEditMode);
   const [data, setData] = useState(initialData);
 
   const handleEditClick = () => {
@@ -137,7 +136,7 @@ export const PrimaryDetails = ({ initialData }: any) => {
               sx={{ marginTop: "1rem" }}
               label="Need"
               name="need"
-              value={data?.need.toString(", ")}
+              value={data?.need?.toString(", ")}
               fullWidth
               disabled={!isEditing}
               onChange={handleInputChange}

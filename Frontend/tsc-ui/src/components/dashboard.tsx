@@ -22,7 +22,6 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems } from "./listItems";
 import Beneficiaries from "../containers/beneficiaries";
 import { useGlobalContext } from "../services/context/globalContext";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -33,7 +32,7 @@ import TaskList from "../containers/taskList";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import RuleIcon from '@mui/icons-material/Rule';
+import RuleIcon from "@mui/icons-material/Rule";
 import PeopleIcon from "@mui/icons-material/People";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
@@ -223,7 +222,7 @@ export default function Dashboard() {
                     }}
                   >
                     <ListItemIcon>
-                    <RuleIcon/>
+                      <RuleIcon />
                     </ListItemIcon>
                     <ListItemText primary="Requests" />
                   </ListItemButton>
