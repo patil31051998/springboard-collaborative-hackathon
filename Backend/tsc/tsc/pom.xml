@@ -14,7 +14,7 @@
 	<name>tsc</name>
 	<description>Project for Citi Tech Fest Hackathon</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
