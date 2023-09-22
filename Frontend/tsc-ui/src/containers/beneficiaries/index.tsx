@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import AddIcon from "@mui/icons-material/Add";
 import "./beneficiaries.css";
 import { getInitialData } from "../../services";
+import { Link, useNavigate } from "react-router-dom";
 
 const columns: GridColDef[] = [
   { field: "cabinNo", headerName: "Cabin No.", width: 90 },
@@ -49,6 +50,26 @@ const columns: GridColDef[] = [
     field: "navigator",
     headerName: "Navigator",
     flex: 1,
+    renderCell: (params) => {
+      const { navigator, id } = params.row;
+      const handleAssignNavigator = () => {
+        console.log("handle navigator");
+      };
+      return navigator ? (
+        <div>{navigator}</div>
+      ) : (
+        <Button
+          style={{
+            backgroundColor: "purple",
+            color: "white",
+          }}
+          size="small"
+          onClick={handleAssignNavigator}
+        >
+          Assigned to me
+        </Button>
+      );
+    },
   },
 ];
 
@@ -57,6 +78,7 @@ export default function Beneficiaries() {
   const [initialRows, setInitialRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeButton, setActiveButton] = useState(1);
+  const navigate = useNavigate();
 
   const navigator = "Sarah Walton";
   useEffect(() => {
@@ -129,8 +151,12 @@ export default function Beneficiaries() {
             Unassigned
           </Button>
         </div>
-        <Button variant="contained" endIcon={<AddIcon />}>
-          Add Beneficiary
+        <Button
+          variant="contained"
+          endIcon={<AddIcon />}
+          onClick={() => navigate("/tsc/beneficiaryDetails")}
+        >
+          Add new Beneficiary
         </Button>
       </div>
       <div className="beneficiaries-grid">

@@ -22,7 +22,12 @@
     "dev": "npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-and-push": "npm install && npm run build && npm run docker-build && npm run aws-login &&  npm run docker-tag && npm run docker-push",
+    "docker-build": "docker build -t cb-tsc-ui .",
+    "docker-tag": "docker tag cb-tsc-ui:latest 448321808773.dkr.ecr.us-east-1.amazonaws.com/cookie-bytes-ui:latest",
+    "docker-push": "docker push 448321808773.dkr.ecr.us-east-1.amazonaws.com/cookie-bytes-ui:latest",
+    "aws-login" : "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 448321808773.dkr.ecr.us-east-1.amazonaws.com"
   },
   "eslintConfig": {
     "extends": [
