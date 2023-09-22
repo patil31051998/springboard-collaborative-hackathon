@@ -41,6 +41,8 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import CaseWorkerRequests from "../containers/case-worker-requests";
 import CalendarView from "./calendarView";
 import UserCalendar from "../containers/navigatorCalendar";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+import Analytics from "../containers/analytics";
 
 function Copyright(props: any) {
   return (
@@ -169,6 +171,19 @@ export default function Dashboard() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                setActiveMenu("about");
+                const url = "https://www.the-springboard.org/about-us";
+                const newTab = window.open(url, "_blank");
+                newTab?.focus?.();
+              }}
+            >
+              <HelpOutlineIcon />
+            </IconButton>
+
             <IconButton color="inherit" onClick={logout}>
               <LogoutIcon />
             </IconButton>
@@ -241,18 +256,6 @@ export default function Dashboard() {
                     </ListItemIcon>
                     <ListItemText primary="Calendar" />
                   </ListItemButton>
-                  <ListItemButton
-                    selected={activeMenu === "about"}
-                    onClick={() => {
-                      setActiveMenu("about");
-                      navigate("/tsc/about");
-                    }}
-                  >
-                    <ListItemIcon>
-                      <HelpOutlineIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="about" />
-                  </ListItemButton>
                 </>
               ) : (
                 <>
@@ -281,16 +284,19 @@ export default function Dashboard() {
                     <ListItemText primary="Calendar" />
                   </ListItemButton>
                   <ListItemButton
-                    selected={activeMenu === "about"}
+                    selected={activeMenu === "dashboard"}
                     onClick={() => {
-                      setActiveMenu("about");
-                      navigate("/tsc/about");
+                      setActiveMenu("dashboard");
+                      navigate("/tsc/analytics");
                     }}
                   >
                     <ListItemIcon>
-                      <HelpOutlineIcon />
+                      <LeaderboardIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Know More" />
+                    <ListItemText
+                      primary="
+                    Dashboard"
+                    />
                   </ListItemButton>
                 </>
               )}
@@ -328,6 +334,7 @@ export default function Dashboard() {
                     element={<CaseWorkerRequests />}
                   />
                   <Route path="/taskList" element={<UserCalendar />} />
+                  <Route path="/analytics" element={<Analytics />} />
                 </Routes>
               </Grid>
             </Grid>
