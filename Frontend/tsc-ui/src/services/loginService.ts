@@ -1,7 +1,7 @@
 import axios from "axios"
 import { User, UserType } from "../types/login"
 
-const baseHost = axios.create({baseURL: "http://localhost:8080/tsc"})
+const baseHost = axios.create({baseURL: "https://uig75k9qxf.us-east-1.awsapprunner.com/tsc"})
 
 const users : {[key: string] : User}= {
     'test1' :{

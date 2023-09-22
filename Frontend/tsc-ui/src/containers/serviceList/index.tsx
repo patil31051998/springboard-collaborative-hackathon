@@ -31,8 +31,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
-import { blue, red } from "@mui/material/colors";
 import CircleIcon from "@mui/icons-material/Circle";
+import { addService } from "../../services";
 
 export const ServiceList = ({ initialServices }: any) => {
   const [services, setServices] = useState(initialServices);
@@ -48,8 +48,14 @@ export const ServiceList = ({ initialServices }: any) => {
 
   const handleSubmit = (serviceData: any) => {
     // You can send the service data to your API here
-    console.log(serviceData);
-    setServices([...services, serviceData]);
+    const orgMap: any = {
+      "Marigold": "Kanye8",
+      "Credit Union":"Shakira9"
+    }
+    const service = {...serviceData, serviceID: serviceData.serviceName, caseWorkerID: orgMap?.[serviceData.organizationName]}
+    console.log(service);
+    addService(service).catch(console.log);
+    setServices([...services, service]);
   };
 
   return (
@@ -73,7 +79,7 @@ export const ServiceList = ({ initialServices }: any) => {
           <Typography variant="h6">All Services</Typography>
         </span>
         {services.map((service: any, index: any) => (
-          <CommentAccordion key={service?.name + index} service={service} />
+          <CommentAccordion key={service?.serviceName + index} service={service} />
         ))}
       </CardContent>
     </Card>
@@ -375,9 +381,8 @@ const CreateService = ({ isOpen, onClose, onSubmit }: any) => {
             value={service.organizationName}
             onChange={handleChange}
           >
-            <MenuItem value="pending">Pending</MenuItem>
-            <MenuItem value="in progress">In Progress</MenuItem>
-            <MenuItem value="done">Done</MenuItem>
+            <MenuItem value="Marigold">Marigold</MenuItem>
+            <MenuItem value="Credit Union">Credit Union</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth margin="normal">
@@ -396,30 +401,30 @@ const CreateService = ({ isOpen, onClose, onSubmit }: any) => {
             onChange={handleChange}
             multiple
           >
-            <MenuItem value="pending">Pending</MenuItem>
-            <MenuItem value="in progress">In Progress</MenuItem>
-            <MenuItem value="done">Done</MenuItem>
+            <MenuItem value="pending">Bank account details</MenuItem>
+            <MenuItem value="done">Medical records</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth margin="normal">
-          <InputLabel>Concent</InputLabel>
+          <InputLabel>Consent</InputLabel>
           <Select
             name="consent"
             value={service.consent}
             onChange={handleChange}
             multiple
           >
-            <MenuItem value="pending">Pending</MenuItem>
-            <MenuItem value="in progress">In Progress</MenuItem>
-            <MenuItem value="done">Done</MenuItem>
+            <MenuItem value="pending">Consent W123</MenuItem>
+            <MenuItem value="in progress">Bank Consent 12W</MenuItem>
+            <MenuItem value="done">SSN Consent</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth margin="normal">
           <InputLabel>Goal</InputLabel>
           <Select name="goal" value={service.goal} onChange={handleChange}>
-            <MenuItem value="pending">Pending</MenuItem>
-            <MenuItem value="in progress">In Progress</MenuItem>
-            <MenuItem value="done">Done</MenuItem>
+            <MenuItem value="pending">Heathy Life</MenuItem>
+            <MenuItem value="in progress">Shelter</MenuItem>
+            <MenuItem value="done">Finance</MenuItem>
+            <MenuItem value="lifeStyle">Lifestyle</MenuItem>
           </Select>
         </FormControl>
       </DialogContent>

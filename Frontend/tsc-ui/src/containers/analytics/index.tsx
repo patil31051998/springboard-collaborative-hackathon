@@ -32,7 +32,7 @@ const data = [
 ];
 
 const enrolledPeople = [
-  { id: 0, value: 10, label: "Houses" },
+  { id: 0, value: 10, label: "Housing" },
   { id: 1, value: 15, label: "Health" },
   { id: 2, value: 20, label: "Lifestyle" },
   { id: 3, value: 9, label: "finance" },

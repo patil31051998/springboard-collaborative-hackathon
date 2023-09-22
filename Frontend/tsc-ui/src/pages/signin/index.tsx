@@ -128,6 +128,7 @@ export default function SignIn() {
                 label="Username"
                 name="username"
                 autoComplete="username"
+                placeholder="(Navigator: N1, Case Worker: Kanye8)"
                 autoFocus
               />
               <TextField
@@ -138,6 +139,7 @@ export default function SignIn() {
                 label="Password"
                 type="password"
                 id="password"
+                value="password1"
                 autoComplete="current-password"
               />
               <FormControlLabel

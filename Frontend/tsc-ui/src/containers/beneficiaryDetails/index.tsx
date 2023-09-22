@@ -71,7 +71,7 @@ export default function BeneficiaryDetails() {
     } else {
       getInitialData()
         .then((response: any) => {
-          const info = response.filter((data: any) => data.id === id);
+          const info = response.filter((data: any) => data.beneficiaryID === id);
           setBasicInformation(info[0]);
         })
         .catch((error: any) => {
@@ -81,7 +81,7 @@ export default function BeneficiaryDetails() {
           setLoading(false);
         });
 
-      getAllServices("navid", "beniId")
+      getAllServices(userDetails?.userID || "", id || "")
         .then((response: any) => {
           setServices(response);
         })
@@ -122,11 +122,11 @@ export default function BeneficiaryDetails() {
             style={{ width: "100%" }}
           >
             <UploadDocuments
-              initialDocumentList={initialDocumentList}
+              initialDocumentList={basicInformation.documents}
               isUserNavigator={isUserNavigator}
             />
           </Grid>
-          {isUserNavigator && (
+          
             <>
               <Grid
                 item
@@ -146,7 +146,7 @@ export default function BeneficiaryDetails() {
                 />
               </Grid>
             </>
-          )}
+          
         </Grid>
       )}
     </div>

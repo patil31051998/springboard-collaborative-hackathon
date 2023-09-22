@@ -12,7 +12,7 @@ const mockData = [
     gender: "female",
     contact: "+1 (855) 550-2255",
     navigatorId: "test1",
-    navigator: "Vinay Desai",
+    navigator: "Tom Brady",
     mhProvider: ["Lorem"],
     sudProvider: ["enim"],
     need: ["exercitation", "consectetur"],
@@ -108,7 +108,7 @@ const mockData = [
     gender: "female",
     contact: "+1 (876) 410-3355",
     navigatorId: "test1",
-    navigator: "Vinay Desai",
+    navigator: "Tom Brady",
     mhProvider: ["veniam"],
     sudProvider: ["anim"],
     need: ["ad", "ad"],
@@ -140,7 +140,7 @@ const mockData = [
     gender: "female",
     contact: "+1 (943) 416-2734",
     navigatorId: "test1",
-    navigator: "Vinay Desai",
+    navigator: "Tom Brady",
     mhProvider: ["anim"],
     sudProvider: ["nisi"],
     need: ["ex", "aliqua"],
@@ -159,7 +159,7 @@ const mockRequestData = [
     gender: "female",
     contact: "+1 (855) 550-2255",
     navigatorId: "test1",
-    navigator: "Vinay Desai",
+    navigator: "Tom Brady",
     mhProvider: ["Lorem"],
     sudProvider: ["enim"],
     need: ["exercitation", "consectetur"],
@@ -262,7 +262,7 @@ const mockRequestData = [
     gender: "female",
     contact: "+1 (876) 410-3355",
     navigatorId: "test1",
-    navigator: "Vinay Desai",
+    navigator: "Tom Brady",
     mhProvider: ["veniam"],
     sudProvider: ["anim"],
     need: ["ad", "ad"],
@@ -296,7 +296,7 @@ const mockRequestData = [
     gender: "female",
     contact: "+1 (943) 416-2734",
     navigatorId: "test1",
-    navigator: "Vinay Desai",
+    navigator: "Tom Brady",
     mhProvider: ["anim"],
     sudProvider: ["nisi"],
     need: ["ex", "aliqua"],
@@ -583,44 +583,44 @@ const scheduledTaks = [
   {
     id: "650c7af5de434511c5622ad9",
     beneficiaryId: "650c7af5ea6ee8d6ddc93460",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "Tom Brady",
     navigatorId: "650c7af5ccabf664089dc4cc",
     startTime: new Date(2023, 9, 22, 10, 7).getTime(),
     endTime: new Date(2023, 9, 28, 10, 7).getTime(),
-    description: "sunt cupidatat aute minim ullamco",
+    description: "Bank account creation",
   },
   {
     id: "650c7af58b35fed0c5d7d9ff",
     beneficiaryId: "650c7af5e3761f0eb2baf1d1",
     navigatorId: "650c7af5962012ff903bebf2",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "Tom Brady",
     startTime: new Date(2023, 10, 2, 10, 7).getTime(),
     endTime: new Date(2023, 10, 8, 10, 7).getTime(),
-    description: "magna non id anim labore",
+    description: "Hospital checkup",
   },
   {
     id: "650c7af5ea29c101e0544cf6",
     beneficiaryId: "650c7af5c693428ddfbfd10c",
     navigatorId: "650c7af5b89cf07674e30d4c",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "Tom Brady",
     startTime: new Date(2023, 9, 22, 20, 7).getTime(),
     endTime: new Date(2023, 9, 28, 10, 7).getTime(),
-    description: "excepteur officia commodo qui nulla",
+    description: "Mental checkup 1",
   },
   {
     id: "650c7af52602fbb2a98bf5cf",
     beneficiaryId: "650c7af5734429b7e6d7042b",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "Tom Brady",
     navigatorId: "650c7af55f9212e28c2dfe1c",
     startTime: new Date(2023, 9, 25, 10, 7).getTime(),
     endTime: new Date(2023, 9, 28, 10, 7).getTime(),
-    description: "cupidatat quis in nisi eiusmod",
+    description: "Mental Health Checkup 1",
   },
   {
     id: "650c7af515cdc8e13a368615",
     beneficiaryId: "650c7af5338536b066be0e93",
-    beneficiaryName: "Vinay Desai",
-    navigatorId: "650c7af5bff9510e71343e5e",
+    beneficiaryName: "John Abraham",
+    navigatorId: "Health checkup",
     startTime: new Date(2023, 8, 28, 10, 7).getTime(),
     endTime: new Date(2023, 8, 28, 14, 7).getTime(),
     description: "nulla mollit deserunt ullamco ad",
@@ -629,46 +629,46 @@ const scheduledTaks = [
     id: "650c7af561328adb6734ef34",
     beneficiaryId: "650c7af510eeff7f32f01888",
     navigatorId: "650c7af5bbed04edc08837cd",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "John Doe",
     startTime: new Date(2023, 8, 2, 10, 7).getTime(),
     endTime: new Date(2023, 8, 28, 10, 7).getTime(),
-    description: "tempor anim aute sunt eiusmod",
+    description: "Health Check",
   },
   {
     id: "650c7af524db73537cb24f8e",
     beneficiaryId: "650c7af5856eabde72d739a1",
     navigatorId: "650c7af598c2eb44eef58328",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "John Doe",
     startTime: new Date(2023, 8, 12, 10, 7).getTime(),
     endTime: new Date(2023, 8, 28, 10, 7).getTime(),
-    description: "fugiat minim reprehenderit ea ipsum",
+    description: "Detox check 2",
   },
   {
     id: "650c7af5023f3855e131f789",
     beneficiaryId: "650c7af595ed66f948519737",
     navigatorId: "650c7af561b364141ea35ae0",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "Tom Brady",
     startTime: new Date(2023, 9, 28, 10, 7).getTime(),
     endTime: new Date(2023, 9, 28, 14, 7).getTime(),
-    description: "consectetur enim ad id incididunt",
+    description: "Detox check 1",
   },
   {
     id: "650c7af54c7fa3e0f5e3f4f5",
     beneficiaryId: "650c7af5a28b3c8ae7ac9120",
     navigatorId: "650c7af5940c3a3d755fc1d9",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "John Doe",
     startTime: new Date(2023, 9, 22, 12, 7).getTime(),
     endTime: new Date(2023, 10, 12, 10, 7).getTime(),
-    description: "magna ea qui occaecat reprehenderit",
+    description: "Docker appointment",
   },
   {
     id: "650c7af5d2fa1ef61a9fff2e",
     beneficiaryId: "650c7af5b1b0c52f5eaeaad5",
     navigatorId: "650c7af511caaec43c21c284",
-    beneficiaryName: "Vinay Desai",
+    beneficiaryName: "Taylor Swift",
     startTime: new Date(2023, 10, 22, 10, 7).getTime(),
     endTime: new Date(2023, 11, 28, 10, 7).getTime(),
-    description: "labore voluptate ipsum laboris ut",
+    description: "Job search",
   },
 ];
 
@@ -682,13 +682,13 @@ const simulateApiRequest = (data: any[]): Promise<any[]> => {
   });
 };
 
-const baseHost = axios.create({baseURL: "http://localhost:8080/"})
+const baseHost = axios.create({baseURL: "https://uig75k9qxf.us-east-1.awsapprunner.com/"})
 export const getInitialData = () => {
   return baseHost.get("/users/allBeneficiaries").then(res => res.data.map((row:any) => ({...row, id: row.beneficiaryID})));
 };
 
 export const getCaseWorkerBeneficiaries = (id: string) => {
-  return axios.get("/users/beneficiaries", {params: {id}});
+  return baseHost.get("/users/beneficiaries", {params: {id}}).then(res => res.data.map((row:any) => ({...row, id: row.beneficiaryID})));
 };
 
 export const getRequestsForCaseWorker = () => {
@@ -701,6 +701,9 @@ export const updateApprovalStatus = (userId: string, status: string) => {
     user.approvalStatus = status;
   }
 };
+export const addService = (t: any) => {
+  return baseHost.post("/services",t)
+}
 
 export const assignToBeneficiary = (
   beneficiaryID: string,
@@ -720,7 +723,11 @@ export const assignToBeneficiary = (
 };
 
 export const getAllServices = (navigatorID: string, beneficiaryID: string) => {
-  return simulateApiRequest(mockServiceData);
+  return baseHost
+    .get("/services", {
+      params: { id: navigatorID, beneficiaryID },
+    })
+    .then((res: any) => res.data);
 };
 
 export const getScheduledTasks = (userType: UserType, userId: string) => {

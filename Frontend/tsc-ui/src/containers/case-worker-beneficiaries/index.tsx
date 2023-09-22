@@ -44,11 +44,11 @@ const columns: GridColDef[] = [
     headerName: "Need",
     flex: 1,
   },
-  {
-    field: "contact",
-    headerName: "Contact",
-    flex: 1,
-  },
+  // {
+  //   field: "contact",
+  //   headerName: "Contact",
+  //   flex: 1,
+  // },
 ];
 
 export default function CaseWorkerBeneficiaries() {
@@ -63,6 +63,7 @@ export default function CaseWorkerBeneficiaries() {
     if(userDetails) {
       getCaseWorkerBeneficiaries(userDetails?.userID)
       .then((response: any) => {
+        console.log(response)
         setRows(response);
         setInitialRows(response);
         setLoading(false);
