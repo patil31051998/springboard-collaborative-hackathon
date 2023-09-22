@@ -11,9 +11,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { blue, red } from "@mui/material/colors";
+import { IconButton } from "@mui/material";
+import { Divider } from "@mui/material";
 
 export const UploadDocuments = ({ initialDocumentList }: any) => {
-  const [documents, setDocuments] = useState<string[]>([]);
+  const [documents, setDocuments] = useState<string[]>([
+    ...initialDocumentList,
+  ]);
   const [newDocument, setNewDocument] = useState("");
   const [selectedFile, setSelectedFile] = useState<any>(null);
 
@@ -50,6 +55,7 @@ export const UploadDocuments = ({ initialDocumentList }: any) => {
           direction="row"
           justifyContent="center"
           alignItems="center"
+          sx={{ marginBottom: "10px" }}
         >
           <Grid item xs>
             <TextField
@@ -92,19 +98,17 @@ export const UploadDocuments = ({ initialDocumentList }: any) => {
             </Button>
           </Grid>
         </Grid>
-
+        <span>
+          <Divider />
+          <Typography variant="h6">Uploaded documents</Typography>
+        </span>
         <List>
           {documents.map((document: any, index) => (
             <ListItem key={index}>
               <ListItemText primary={document} />
-              <Button
-                variant="outlined"
-                color="secondary"
-                startIcon={<DeleteIcon />}
-                onClick={() => handleRemoveDocument(index)}
-              >
-                Remove
-              </Button>
+              <IconButton onClick={() => handleRemoveDocument(index)}>
+                <DeleteIcon sx={{ color: red[500] }} />
+              </IconButton>
             </ListItem>
           ))}
         </List>
