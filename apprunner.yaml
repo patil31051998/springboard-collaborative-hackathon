@@ -1,7 +1,11 @@
-yaml:
-  version: 1
-  services:
-    - name: tsc
-      source: ./Backend/tsc/tsc  # Specify the path to your application folder
-      build:
-        command: mvn clean package  # Specify the build command
+version: 1.0
+runtime: corretto11
+services:
+  - name: tsc
+    source: ./Backend/tsc/tsc  # Specify the path to your application folder
+build:
+  commands:
+    build:
+      - mvn clean package
+run:
+  command: java -Xms256m -jar target/MyApp-1.0-SNAPSHOT.jar .
